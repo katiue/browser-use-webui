@@ -239,15 +239,15 @@ class CustomAgent(Agent):
     def create_history_gif(
             self,
             output_path: str = 'agent_history.gif',
-            duration: int = 3000,
+            duration: int = 4000,
             show_goals: bool = True,
-            show_task: bool = True,
+            show_task: bool = False,
             show_logo: bool = False,
-            font_size: int = 40,
-            title_font_size: int = 56,
-            goal_font_size: int = 44,
-            margin: int = 40,
-            line_spacing: float = 1.5,
+            font_size: int = 20,
+            title_font_size: int = 30,
+            goal_font_size: int = 30,
+            margin: int = 5,
+            line_spacing: float = 0.3,
     ) -> None:
         """Create a GIF from the agent's history with overlaid task and goal text."""
         if not self.history.history:
@@ -316,6 +316,9 @@ class CustomAgent(Agent):
 
         # Process each history item
         for i, item in enumerate(self.history.history, 1):
+            if i == 1:
+                # Skip the first item if we already added the task frame
+                continue
             if not item.state.screenshot:
                 continue
 
@@ -327,7 +330,7 @@ class CustomAgent(Agent):
                 image = self._add_overlay_to_image(
                     image=image,
                     step_number=i,
-                    goal_text=item.model_output.current_state.thought,
+                    goal_text=item.model_output.current_state.summary,
                     regular_font=regular_font,
                     title_font=title_font,
                     margin=margin,

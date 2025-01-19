@@ -27,7 +27,7 @@ class CustomSystemPrompt(SystemPrompt):
            "important_contents": "Output important contents closely related to user\'s instruction or task on the current page. If there is, please output the contents. If not, please output empty string ''.",
            "completed_contents": "Update the input Task Progress. Completed contents is a general summary of the current contents that have been completed. Just summarize the contents that have been actually completed based on the current page and the history operations. Please list each completed item individually, such as: 1. Input username. 2. Input Password. 3. Click confirm button",
            "thought": "Think about the requirements that have been completed in previous operations and the requirements that need to be completed in the next one operation. If the output of prev_action_evaluation is 'Failed', please reflect and output your reflection here. If you think you have entered the wrong page, consider to go back to the previous page in next action.",
-           "summary": "Please generate a brief natural language description for the operation in next actions based on your Thought."
+           "summary": "Please generate a brief natural language description to describe what appear on the webpage. Focus on describing the user interface and interactive elements like you are making a short, concise report with two sentences."
          },
          "action": [
            {
